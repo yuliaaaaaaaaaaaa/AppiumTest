@@ -3,7 +3,7 @@ package org.example.appiumtest;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.appmanagement.BaseOptions;
+import io.appium.java_client.remote.options.BaseOptions;
 import org.openqa.selenium.chrome.ChromeOptions;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -14,9 +14,6 @@ import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.*;
 
 public class IntroScreenTest {
     private AndroidDriver driver;
@@ -34,17 +31,17 @@ public class IntroScreenTest {
                 .amend("appium:nativeWebScreenshot", true)
                 .amend("appium:newCommandTimeout", 3600)
                 .amend("appium:connectHardwareKeyboard", true);
-
+        driver = new AndroidDriver(this.getUrl(), options);
+        }
         private URL getUrl() {
             try {
                 return new URL("http://127.0.0.1:4723");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
+            return null;
         }
 
-        driver = new AndroidDriver(this.getUrl(), options);
-    }
 
     @AfterEach
     public void tearDown() {

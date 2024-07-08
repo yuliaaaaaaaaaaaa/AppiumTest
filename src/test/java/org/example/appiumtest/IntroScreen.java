@@ -7,16 +7,12 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
-
-
 public class IntroScreen {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Пропустить\"]")
-    private WebElement skipButton;
+    private WebElement SkipButton;
 
     public Boolean checkSkipButton() {
-        return skipButton.isEnabled();
+        return SkipButton.isEnabled();
     }
 
     public IntroScreen(AndroidDriver driver) {
