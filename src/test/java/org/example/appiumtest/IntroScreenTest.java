@@ -1,12 +1,8 @@
 package org.example.appiumtest;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
+
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
-import org.openqa.selenium.chrome.ChromeOptions;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
 import java.net.MalformedURLException;
@@ -32,6 +28,7 @@ public class IntroScreenTest {
                 .amend("appium:newCommandTimeout", 3600)
                 .amend("appium:connectHardwareKeyboard", true);
         driver = new AndroidDriver(this.getUrl(), options);
+        IntroScreen = new IntroScreen(driver);
         }
         private URL getUrl() {
             try {
