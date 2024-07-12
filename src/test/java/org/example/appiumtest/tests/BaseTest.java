@@ -1,19 +1,16 @@
-package org.example.appiumtest;
-
+package org.example.appiumtest.tests;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import static org.junit.jupiter.api.Assertions.*;
+public class BaseTest {
 
-
-public class IntroScreenTest {
-    private AndroidDriver driver;
-    private IntroScreen IntroScreen;
+    private static AndroidDriver driver;
 
     @BeforeEach
     public void setUp() {
@@ -28,26 +25,23 @@ public class IntroScreenTest {
                 .amend("appium:newCommandTimeout", 3600)
                 .amend("appium:connectHardwareKeyboard", true);
         driver = new AndroidDriver(this.getUrl(), options);
-        IntroScreen = new IntroScreen(driver);
-        }
-        private URL getUrl() {
-            try {
-                return new URL("http://127.0.0.1:4723");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
+    }
 
+    private URL getUrl() {
+        try {
+            return new URL("http://127.0.0.1:4723");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @AfterEach
     public void tearDown() {
         driver.quit();
     }
 
-    @Test
-    public void skipCheckTest() {
-        assertTrue(IntroScreen.checkSkipButton(),"Нет кнопки пропуска");
-
+    public static AndroidDriver getDriver() {
+        return driver;
     }
 }
